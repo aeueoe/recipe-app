@@ -45,6 +45,7 @@
         }
 
         .recipe-details h2 {
+            color: #f76c01f0;
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 10px;
@@ -61,9 +62,44 @@
         .recipe-description {
             margin-top: 20px;
         }
+
+        nav {
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-right {
+            margin-right: 20px;
+        }
+
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #f76c01f0;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #ae4d02c3;
+        }
     </style>
 </head>
-
+<nav>
+    <div class="nav-right">
+        <a href="{%url 'logout' %}" class="btn btn-primary"> Logout </a>
+    </div>
+</nav>
 <div class="wrapper">
     <div class="recipe-image">
         <img src="{{ MEDIA_URL }}{{ object.pic.url }}" />
