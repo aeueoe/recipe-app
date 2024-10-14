@@ -2,21 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Recipe App</title>
+    <title>RecipeApp | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <style type="text/css">
+        body {
+            background: url("{% static 'recipes/images/bg.jpg' %}") no-repeat fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30vh;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .blurred-div {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(1px);
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #888;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to our Recipe App</h1>
-
-    </header>
-    <main>
-        <h2>Recipe App with simple and tasty recipes.</h2>
-
-    </main>
-
+    <div class="blurred-div">
+        <h1>Welcome to RecipeApp</h1>
+        <h2>Discover new recipes and cooking inspiration</h2>
+        <p>Explore our collection of delicious recipes</p>
+    </div>
 </body>
 
 </html>
