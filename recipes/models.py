@@ -12,13 +12,13 @@ class Recipe(models.Model):
     def difficulty(self):
         ingredients = self.ingredients.split(', ')
         cooking_time_minutes = float(self.cooking_time)
-        if cooking_time_minutes < 30 and len(ingredients) < 7:
+        if cooking_time_minutes < 20 and len(ingredients) < 7:
             return 'Easy'
-        elif cooking_time_minutes < 30 and len(ingredients) >= 7:
+        elif cooking_time_minutes < 20 and len(ingredients) >= 7:
             return 'Medium'
-        elif cooking_time_minutes >= 30 and len(ingredients) < 7:
+        elif cooking_time_minutes >= 20 and len(ingredients) < 7:
             return 'Intermediate'
-        elif cooking_time_minutes >= 30 and len(ingredients) >= 7:
+        elif cooking_time_minutes >= 20 and len(ingredients) >= 7:
             return 'Hard'
 
     def get_absolute_url(self):

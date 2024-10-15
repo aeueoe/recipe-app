@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import home, RecipeListView, RecipeDetailView, logout_view
 
+
 app_name = 'recipes'
 
 urlpatterns = [
@@ -8,4 +9,5 @@ urlpatterns = [
     path('list/', RecipeListView.as_view(), name='list'),
     path('list/<int:pk>/', RecipeDetailView.as_view(), name='details'),
     path('logout/', logout_view, name='logout'),
+  
 ]

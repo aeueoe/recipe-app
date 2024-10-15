@@ -1,0 +1,200 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.blurred-div {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #f76c01f0;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #ae4d02c3;
+}
+
+.login-form {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  padding: 50px;
+  margin: 50px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px;
+  grid-gap: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
+  width: 70vw;
+  margin: 0 auto;
+  height: 100vh;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item {
+  text-align: center;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 7px;
+  min-width: 150px;
+  min-height: 150px;
+  padding-bottom: 10px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+
+.grid-item:hover {
+  transform: scale(1.02);
+}
+
+.image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-info {
+  margin-top: 10px;
+}
+
+.recipe-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.recipe-info a {
+  text-decoration: none;
+  color: #f76c01f0;
+}
+
+.recipe-info a:hover {
+  text-decoration: underline;
+}
+
+.recipe-info b {
+  font-weight: 600;
+}
+
+nav {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 16px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-right {
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.login {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+p {
+  margin-bottom: 30px;
+}
+
+.wrapper {
+  display: flex;
+  background-color: white;
+  width: 70vw;
+  margin-top: 10vw;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
