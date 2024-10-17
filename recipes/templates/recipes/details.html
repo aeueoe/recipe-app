@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}" />
+
     <style type="text/css">
         body {
             background: url("{% static 'recipes/images/bg2.jpg' %}") no-repeat fixed;
@@ -52,7 +53,7 @@
     </nav>
     <div class="wrapper">
         <div class="recipe-image">
-            <img src="{{ MEDIA_URL }}{{ object.pic.url }}" loading="lazy" alt="{{ object.name }}" />
+            <img src="{{ MEDIA_URL }}{{ object.pic.url }}" alt="{{ object.name }}" />
         </div>
         <div class="recipe-details">
             <h2>{{ object.name }}</h2>

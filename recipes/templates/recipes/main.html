@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}" />
+
     <style type="text/css">
         body {
             background: url("{% static 'recipes/images/bg2.jpg' %}") no-repeat fixed;
@@ -54,7 +55,7 @@
         {% for object in object_list %}
         <div class="grid-item">
             <div class="image-container">
-                <img src="{{ object.pic.url }}" loading="lazy" alt="{{ object.name }}" />
+                <img src="{{ object.pic.url }}" alt="{{ object.name }}" />
             </div>
             <div class="recipe-info">
                 <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>

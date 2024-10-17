@@ -16,9 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')  
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = ['recipe-app-nyzy.onrender.com']
+ALLOWED_HOSTS = ['recipe-app-nyzy.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
