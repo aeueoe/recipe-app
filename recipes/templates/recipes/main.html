@@ -16,19 +16,45 @@
 </head>
 
 <body>
-<nav>
-    <ul class=" nav-links">
-        <li><a href="{% url 'recipes:list' %}">Home</a></li>
-        <li><a href="{% url 'search' %}">Search</a></li>
-        <li><a href="{% url 'recipes:about' %}">About</a></li>
-        <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'recipes:home' %}" title="Home">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#f76c01">
+                        <path
+                            d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                    </svg>
+
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'recipes:list' %}" title="Recipes">Recipes</a>
+            </li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            <li>
+                <a href="{% url 'recipes:add_recipe' %}" title="Add Recipe">Add Recipe</a>
+            </li>
+            <li>
+                <a href="{% url 'recipes:about' %}" title="About">About</a>
+            </li>
+            <li>
+                <a href="{% url 'recipes:logout' %}" title="Logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#f76c01">
+                        <path
+                            d="M200-120q-33 0-56.5-23.5T120-200v-160h80v160h560v-560H200v160h-80v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm220-160-56-58 102-102H120v-80h346L364-622l56-58 200 200-200 200Z" />
+                    </svg>
+
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div class="grid-container">
         {% for object in object_list %}
         <div class="grid-item">
             <div class="image-container">
-                <img src="{{ object.pic.url }}" alt="{{ object.name }}" />
+                <img src="{{ object.pic.url }}" loading="lazy" alt="{{ object.name }}" />
             </div>
             <div class="recipe-info">
                 <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>

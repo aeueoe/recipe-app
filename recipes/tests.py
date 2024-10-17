@@ -4,10 +4,14 @@ from .forms import RecipesSearchForm
 
 class RecipeModelTest(TestCase):
 
-    def setUpTestData():
-        # Set up non-modified objects used by all test methods
-        Recipe.objects.create(name='Tea', cooking_time=5, ingredients='tea-leaves, water, sugar',
-        description='Add tea leaves to boiling water, then add sugar')
+    @classmethod
+    def setUpTestData(cls):
+        Recipe.objects.create(
+            name='Tea', 
+            cooking_time=5, 
+            ingredients='tea-leaves, water, sugar',
+            description='Add tea leaves to boiling water, then add sugar'
+        )
 
     def test_description(self):
         recipe = Recipe.objects.get(id=1)
@@ -32,6 +36,12 @@ class RecipeModelTest(TestCase):
         recipe = Recipe.objects.get(id=1)
         self.assertEqual(recipe.difficulty, 'Easy')
 
+   
+    def test_max_length_name(self):
+        recipe = Recipe(name='A' * 121, cooking_time=5, ingredients='test', description='test')
+        with self.assertRaises(Exception):
+            recipe.full_clean()  
+
 class RecipesSearchFormTest(TestCase):
 
     def test_form_renders_recipe_diff_input(self):
@@ -49,3 +59,5 @@ class RecipesSearchFormTest(TestCase):
     def test_form_invalid_data(self):
         form = RecipesSearchForm(data={'recipe_diff': '', 'chart_type': ''})
         self.assertFalse(form.is_valid())
+        self.assertIn('This field is required.', form.errors['recipe_diff'])
+        self.assertIn('This field is required.', form.errors['chart_type'])

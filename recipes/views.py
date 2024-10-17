@@ -83,14 +83,14 @@ def logout_view(request):
 def about(request):
     return render(request, 'recipes/about.html')
 
+@login_required
 def add_recipe_view(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')  
+            return redirect('recipes:list')  
     else:
         form = RecipeForm()
 
     return render(request, 'recipes/add_recipe.html', {'form': form})
-    
