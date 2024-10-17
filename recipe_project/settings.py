@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'  
 
-ALLOWED_HOSTS = ['your-render-app-url.render.com']  
+ALLOWED_HOSTS = ['recipe-app-nyzy.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
