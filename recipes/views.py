@@ -9,6 +9,7 @@ from .forms import RecipesSearchForm
 import pandas as pd
 from .utils import get_chart
 from django.db.models import Count, Case, Value, When, CharField
+from .forms import RecipesSearchForm, RecipeForm 
 
 def home(request):
     return render(request, 'recipes/recipes_home.html')
@@ -32,7 +33,6 @@ def records(request):
         recipe_diff = form.cleaned_data['recipe_diff']
         chart_type = form.cleaned_data['chart_type']
         
-        # Map recipe_diff to meaningful names
         difficulty_map = {
             '#1': 'Easy',
             '#2': 'Medium',
@@ -41,34 +41,56 @@ def records(request):
         }
         recipe_diff = difficulty_map.get(recipe_diff)
 
-        # Query Recipes with updated logic
         if recipe_diff:
-            # Use Count to determine the number of ingredients
             qs = Recipe.objects.annotate(
                 ingredient_count=Count('ingredients'),
-                difficulty=Case(
-                    When(cooking_time__lt=20, ingredient_count__lt=7, then=Value('Easy')),
-                    When(cooking_time__lt=20, ingredient_count__gte=7, then=Value('Medium')),
-                    When(cooking_time__gte=20, ingredient_count__lt=7, then=Value('Intermediate')),
-                    When(cooking_time__gte=20, ingredient_count__gte=7, then=Value('Hard')),
+                calculated_difficulty=Case(
+                    When(cooking_time__lt=20, ingredient_count__lt=6, then=Value('Easy')),
+                    When(cooking_time__lt=20, ingredient_count__gte=6, then=Value('Medium')),
+                    When(cooking_time__gte=20, ingredient_count__lt=6, then=Value('Intermediate')),
+                    When(cooking_time__gte=20, ingredient_count__gte=6, then=Value('Hard')),
                     default=Value('Unknown'),
                     output_field=CharField()
                 )
-            ).filter(difficulty=recipe_diff)
-            
-            # Convert queryset to DataFrame if query returns results
+            ).filter(calculated_difficulty=recipe_diff)
+
             if qs.exists():
-                recipe_df = pd.DataFrame(list(qs.values('name', 'cooking_time')))
+                
+                data = []
+                for recipe in qs:
+                    data.append({
+                        'name': recipe.name,  
+                        'cooking_time': recipe.cooking_time,
+                        'difficulty': recipe.calculated_difficulty  
+                    })
+                recipe_df = pd.DataFrame(data)
                 chart = get_chart(chart_type, recipe_df, labels=recipe_df['name'].values)
-                recipe_df = recipe_df.to_html()
+                recipe_df = recipe_df.to_html(escape=False)
 
     context = {
         'form': form,
-        'recipe_df': recipe_df,
+        'recipes': qs,  
         'chart': chart,
     }
     return render(request, 'recipes/search.html', context)
 
+
+
 def logout_view(request):
     logout(request)
     return redirect('recipes:home')
+
+def about(request):
+    return render(request, 'recipes/about.html')
+
+def add_recipe_view(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  
+    else:
+        form = RecipeForm()
+
+    return render(request, 'recipes/add_recipe.html', {'form': form})
+    

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RecipeApp | About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}" />
+</head>
+
+<body>
+    <nav>
+        <ul class=" nav-links">
+            <li><a href="{% url 'recipes:list' %}">Home</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            <li><a href="{% url 'recipes:about' %}">About</a></li>
+            <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="about-container">
+        <h3>Connect with me on:</h3>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/julia-atamas/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/aeueoe" target="_blank">GitHub</a></li>
+            <li><a href="https://atamas-portfolio.vercel.app/" target="_blank">Portfolio</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -10,27 +10,28 @@
         body {
             background: url("{% static 'recipes/images/bg2.jpg' %}") no-repeat fixed;
             background-size: cover;
+
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-right">
-            <a href="{%url 'search' %}" class="btn btn-primary"> Search </a>
-            <a href="{%url 'logout' %}" class="btn btn-primary"> Logout </a>
-        </div>
-    </nav>
+<nav>
+    <ul class=" nav-links">
+        <li><a href="{% url 'recipes:list' %}">Home</a></li>
+        <li><a href="{% url 'search' %}">Search</a></li>
+        <li><a href="{% url 'recipes:about' %}">About</a></li>
+        <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
+    </ul>
+</nav>
     <div class="grid-container">
         {% for object in object_list %}
         <div class="grid-item">
             <div class="image-container">
-                <img src="{{ object.pic.url }}" />
+                <img src="{{ object.pic.url }}" alt="{{ object.name }}" />
             </div>
             <div class="recipe-info">
-                <h4>
-                    <a href="{{object.get_absolute_url}}"> {{object.name}} </a>
-                </h4>
+                <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>
                 <div>
                     <b>Cooking Time (min): </b> {{ object.cooking_time|floatformat:0 }} <br />
                     <b>Difficulty: </b> {{ object.difficulty }} <br />

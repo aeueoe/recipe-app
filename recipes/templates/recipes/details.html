@@ -12,108 +12,34 @@
             background-size: cover;
 
         }
-
-        .wrapper {
-            display: flex;
-            background-color: white;
-            width: 70vw;
-            margin-top: 10vw;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .recipe-image {
-            width: 250px;
-            height: 250px;
-            overflow: hidden;
-            text-align: center;
-            border-radius: 20px;
-            margin-right: 20px;
-        }
-
-        .recipe-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .recipe-details {
-            padding-top: 20px;
-        }
-
-        .recipe-details h2 {
-            color: #f76c01f0;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .recipe-info {
-            margin-bottom: 20px;
-        }
-
-        .recipe-info b {
-            font-weight: 600;
-        }
-
-        .recipe-description {
-            margin-top: 20px;
-        }
-
-        nav {
-            overflow: hidden;
-            width: 100%;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .nav-right {
-            margin-right: 20px;
-        }
-
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #f76c01f0;
-            color: #fff;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background-color: #ae4d02c3;
-        }
     </style>
 </head>
+
+<body>
 <nav>
-    <div class="nav-right">
-        <a href="{%url 'search' %}" class="btn btn-primary"> Search </a>
-        <a href="{%url 'logout' %}" class="btn btn-primary"> Logout </a>
-    </div>
+    <ul class=" nav-links">
+        <li><a href="{% url 'recipes:list' %}">Home</a></li>
+        <li><a href="{% url 'search' %}">Search</a></li>
+        <li><a href="{% url 'recipes:about' %}">About</a></li>
+        <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
+    </ul>
 </nav>
-<div class="wrapper">
-    <div class="recipe-image">
-        <img src="{{ MEDIA_URL }}{{ object.pic.url }}" />
-    </div>
-    <div class="recipe-details">
-        <h2>{{ object.name }}</h2>
-        <div class="recipe-info">
-            <b>Cooking Time (min): </b> {{ object.cooking_time|floatformat:0 }} <br />
-            <b>Difficulty: </b> {{ object.difficulty }} <br />
+    <div class="wrapper">
+        <div class="recipe-image">
+            <img src="{{ MEDIA_URL }}{{ object.pic.url }}" alt="{{ object.name }}" />
         </div>
-        <div class="recipe-description">
-            <b>Ingredients: </b> {{object.ingredients}} <br />
-            <b>Description: </b> {{object.description}} <br />
+        <div class="recipe-details">
+            <h2>{{ object.name }}</h2>
+            <div class="recipe-info">
+                <b>Cooking Time (min): </b> {{ object.cooking_time|floatformat:0 }} <br />
+                <b>Difficulty: </b> {{ object.difficulty }} <br />
+            </div>
+            <div class="recipe-description">
+                <b>Ingredients: </b> {{ object.ingredients }} <br />
+                <b>Description: </b> {{ object.description }} <br />
+            </div>
         </div>
     </div>
-</div>
+</body>
 
 </html>

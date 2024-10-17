@@ -6,46 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}" />
-    <style>
+    <style type="text/css">
         body {
             background: url("{% static 'recipes/images/bg2.jpg' %}") no-repeat fixed;
             background-size: cover;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
 <body>
     <nav>
-        <div class="nav-right">
-            <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
-        </div>
+        <ul class=" nav-links">
+            <li><a href="{% url 'recipes:list' %}">Home</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            <li><a href="{% url 'recipes:about' %}">About</a></li>
+            <li><a href="{% url 'recipes:logout' %}">Logout</a></li>
+        </ul>
     </nav>
-
-    <div class="container">
+    <div class="search-container">
         <h1>Search for Recipes</h1>
-        <hr />
         <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn btn-primary" type="submit">Search</button>
+            <button class="btn btn-action" type="submit">Search</button>
         </form>
-
-        <br />
-        {% if recipe_df %}
+        {% if recipes %}
         <h3>Search Results</h3>
-        {{ recipe_df|safe }}
-        <br />
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cooking Time</th>
+                    <th>Difficulty</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></td>
+                    <td>{{ recipe.cooking_time }}</td>
+                    <td>{{ recipe.calculated_difficulty }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <img alt="chart" src="data:image/png;base64,{{ chart|safe }}" />
         {% else %}
         <h3>No Data Available</h3>

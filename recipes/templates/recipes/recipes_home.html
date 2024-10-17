@@ -10,18 +10,18 @@
         body {
             background: url("{% static 'recipes/images/bg.jpg' %}") no-repeat fixed;
             background-size: cover;
-            margin-top: 30vh;
-        }
 
-    
+        }
     </style>
 </head>
 
 <body>
-    <div class="blurred-div">
-        <h1>Welcome to RecipeApp</h1>
-        <h2>Discover new recipes and cooking inspiration</h2>
-        <a href="{%url 'login' %}" class="btn btn-primary"> Login </a>
+    <div class="container">
+        <div class="hero">
+            <h1>Welcome to RecipeApp</h1>
+            <h2>Discover new recipes and cooking inspiration</h2>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        </div>
     </div>
 </body>
 
